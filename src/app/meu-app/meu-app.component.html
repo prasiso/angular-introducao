@@ -1,0 +1,75 @@
+<!-- interpolacao -->
+<p>{{aluno.dados.nome}}</p>
+
+<!-- condicional -->
+<p *ngIf="isVisible == false; else condicaoFalsa">Texto 1</p>
+<ng-template #condicaoFalsa>
+    <p>2</p>
+</ng-template>
+
+<!-- switch -->
+<div [ngSwitch]="myValue">
+    <span *ngSwitchCase="1">Valor 1</span>
+    <span *ngSwitchCase="2">Valor 2</span>
+    <span *ngSwitchCase="3">Valor 3</span>
+    <span *ngSwitchCase="4">Valor 4</span>
+    <span *ngSwitchCase="">Valor Padrao</span>
+</div>
+
+<!-- for -->
+<ul>
+    <li *ngFor="let item of myList">Item {{item}}</li>
+</ul>
+<div>
+    <!-- propriedade-bindg -->
+    <img [src]="enderecoImagem" alt="">
+</div>
+<div>
+    <!-- Event -->
+    <button (click)="funcaoClique()">Clique aqui</button>
+</div>
+<div>
+    <!-- data Binding manual -->
+    <h6>Manual</h6>
+    {{nome}}
+    <input type="text" [value]="nome" (input)="nome = meuNome.value" #meuNome>
+</div>
+
+<div>
+    <!-- Automatica, com duas bindigs -->
+    <h6>Automatica, com duas bindigs</h6>
+    {{nome}}
+    <input type="text" [ngModel]="nome" (ngModelChange)="nome = $event">
+</div>
+<div>
+    <!-- Automatica, com duas bindigs -->
+    <h6>Automatica</h6>
+    {{nome}}
+    <input type="text" [(ngModel)]="nome">
+</div>
+
+<!-- class / style Binding -->
+<div>
+    <select (change)="0" #minhaClasse>
+        <option value="1">Classe 1</option>
+        <option value="2">Classe 2</option>
+        <option value="3">Classe 3</option>
+    </select>
+    <!-- class Binding -->
+
+    <div [class.classe1]="minhaClasse.value == '1'" [class.classe2]="minhaClasse.value == '2'" [class.classe3]="minhaClasse.value == '3'">Minha Classe</div>
+
+    <!-- style Binding -->
+
+    <div [style.display]="minhaClasse.value == '1'? 'none': 'block'">Minha Classe</div>
+    <!-- Service -->
+    <ul>
+        <li *ngFor="let aluno of alunos">Nome:{{aluno.nome}}</li>
+    </ul>
+    <input type="text" [(ngModel)]="searchText" (keyup.enter)="getProjects()">
+    <ul>
+        <li *ngFor="let project of projects">
+            Name:{{project.full_name}}
+        </li>
+    </ul>
+</div>
